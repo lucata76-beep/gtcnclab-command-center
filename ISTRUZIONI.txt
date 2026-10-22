@@ -1,0 +1,12 @@
+GTcncLAB COMMAND CENTER — VERSIONE CORRETTA
+
+1. L’anteprima di un file HTML nell’app ChatGPT o nell’app File di iPhone può bloccare JavaScript. In tal caso l’anteprima mostrerà «ANTEPRIMA NON INTERATTIVA» e non funzioneranno i comandi dinamici.
+2. Decomprimi lo ZIP.
+3. Carica tutti i file nella root di un repository GitHub pubblico (inclusi index.html, manifest.webmanifest, sw.js e tutte le icone).
+4. GitHub → repository → Settings → Pages → Deploy from a branch → main → /(root) → Save.
+5. Apri l’indirizzo HTTPS restituito da Pages in Safari su iPhone.
+6. Devi leggere «GENERATORE ATTIVO» prima di utilizzarlo. Scegli argomento e formato, copia il comando e incollalo nella chat del progetto ChatGPT.
+7. Nella stessa chat, dopo aver approvato il contenuto, usa la seconda sezione per copiare il comando di produzione.
+8. Safari: Condividi → Aggiungi alla schermata Home → Apri come app web (se disponibile).
+
+L’app produce comandi testuali, non genera direttamente un post o un Reel. Serve collegarla al progetto ChatGPT che include Prompt Master e file di produzione.

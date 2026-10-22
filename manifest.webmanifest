@@ -1,0 +1,25 @@
+{
+  "name": "GTcncLAB Command Center",
+  "short_name": "GTcncLAB",
+  "description": "Generatori rapidi di comandi per ChatGPT: contenuti e produzione Instagram GTcncLAB",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#09131b",
+  "theme_color": "#09131b",
+  "lang": "it",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

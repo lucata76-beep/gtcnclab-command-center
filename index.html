@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b141b">
+<title>GTcncLAB • Comandi Rapidi</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="GTcncLAB">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="manifest" href="manifest.webmanifest">
+
+<style>
+  :root{--bg:#09131b;--panel:#12202b;--panel2:#172a35;--border:#29424b;--orange:#ffa31a;--yellow:#ffca43;--cyan:#63d6e5;--white:#f5f7f8;--muted:#a6bbc6;--green:#50d6a3;--radius:19px;}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(circle at 80% -15%,#1b3948 0,transparent 38%),linear-gradient(170deg,#08131b,#09131b 65%,#101f27);color:var(--white);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:100vh}
+  .wrap{max-width:1050px;margin:0 auto;padding:clamp(16px,4vw,36px) clamp(14px,3vw,25px) 54px}
+  .header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:25px}
+  .brand{font-size:clamp(29px,5vw,43px);font-weight:900;letter-spacing:-1.8px;line-height:1.03;margin:5px 0 10px}
+  .brand em{color:var(--orange);font-style:normal}
+  .eyebrow{font-size:11px;letter-spacing:.22em;color:var(--cyan);font-weight:800}
+  .intro{max-width:680px;margin:0;color:var(--muted);font-size:14px}
+  .offline{display:inline-flex;align-items:center;gap:7px;border:1px solid #2d4943;color:#bdebd5;border-radius:999px;padding:7px 10px;font-size:11px;font-weight:700;white-space:nowrap}
+  .dot{width:7px;height:7px;background:var(--green);border-radius:50%}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
+  .card{min-width:0;background:linear-gradient(145deg,rgba(22,39,50,.98),rgba(16,30,40,.99));border:1px solid var(--border);border-radius:var(--radius);padding:clamp(18px,2.4vw,24px);box-shadow:0 20px 50px #0003;display:flex;flex-direction:column}
+  .step{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--orange);font-weight:900;margin-bottom:9px}
+  h2{font-size:clamp(19px,2.2vw,25px);margin:0 0 9px;line-height:1.16;letter-spacing:-.45px}
+  .description{font-size:13px;color:var(--muted);margin:0 0 22px;min-height:57px}
+  label{display:block;font-size:12px;font-weight:800;color:#d7e1e5;margin-bottom:8px;letter-spacing:.035em}
+  input,select,textarea{width:100%;border:1px solid #36505a;border-radius:11px;background:#0a1822;color:var(--white);font:inherit;outline:none}
+  input,select{min-height:47px;padding:11px 13px}
+  input:focus,select:focus,textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #63d6e51f}
+  select{appearance:auto}
+  .field{margin-bottom:17px}
+  .preview-title{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:var(--cyan);font-weight:850;letter-spacing:.08em;text-transform:uppercase;margin:8px 0 9px}
+  .preview-title span{color:var(--muted);font-size:10px;font-weight:500;text-transform:none;letter-spacing:0}
+  textarea{min-height:215px;resize:vertical;padding:13px;line-height:1.5;font-size:13px;font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;color:#d9f4ed;}
+  .actions{display:grid;grid-template-columns:1.25fr 1fr;gap:9px;margin-top:13px}
+  button{border:0;min-height:48px;border-radius:11px;cursor:pointer;font-size:14px;font-weight:850;touch-action:manipulation}
+  .copy{background:linear-gradient(120deg,var(--orange),var(--yellow));color:#1a1610}
+  .download{background:#263b46;color:var(--white);border:1px solid #49616b}
+  button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+  button:hover{filter:brightness(1.08)}
+  .note{border-left:3px solid var(--orange);border-radius:8px;background:#172730;padding:13px 15px;font-size:13px;color:#d5e1e6;margin:19px 0 0}
+  .note strong{color:var(--white)}
+  .footer{color:var(--muted);text-align:center;font-size:12px;margin-top:24px}
+  [hidden]{display:none!important}
+  .status{padding:12px 14px;border-radius:12px;font-size:13px;margin:0 0 21px;line-height:1.55}
+  .status.warn{border:1px solid #b06c25;background:#362516;color:#ffe0b3}
+  .status.ok{border:1px solid #36755a;background:#173e32;color:#adf0d1}
+  .status strong{display:block;font-size:14px;margin-bottom:3px}
+  button:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(1)}
+  #toast{position:fixed;z-index:100;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translate(-50%,10px);background:#ecf8f3;color:#17332b;border-radius:100px;padding:11px 18px;font-size:13px;font-weight:800;box-shadow:0 16px 60px #000a;opacity:0;pointer-events:none;transition:all .25s;max-width:90vw;text-align:center}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+  @media(max-width:740px){.grid{grid-template-columns:1fr}.header{align-items:flex-start}.offline{font-size:10px}.description{min-height:0}.card{padding:19px}.brand{margin-top:5px} textarea{min-height:180px}}
+  @media(max-width:420px){.header{flex-direction:column;gap:14px}.actions{grid-template-columns:1fr 1fr}button{font-size:13px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="header">
+    <div>
+      <div class="eyebrow">GTcncLAB / CONTENT STUDIO</div>
+      <div class="brand"><em>GT</em>cncLAB <span style="font-weight:500;color:#d4e4ec;font-size:.55em;letter-spacing:0">COMMAND CENTER</span></div>
+      <p class="intro">Scegli il formato, copia il comando e incollalo nella chat del tuo progetto ChatGPT. Questa pagina prepara i prompt: non crea direttamente immagini o video.</p>
+    </div>
+    <div class="offline"><span class="dot"></span> FUNZIONA OFFLINE</div>
+  </header>
+  <div class="status warn" id="jsWarning" role="status"><strong>⚠️ ANTEPRIMA NON INTERATTIVA</strong>Qui JavaScript non è attivo. Nelle anteprime di ChatGPT o dell’app File i comandi potrebbero non comparire. Pubblica i file dello ZIP su GitHub Pages e apri l’indirizzo HTTPS in Safari. Finché vedi questo avviso, i pulsanti sono disabilitati.</div>
+  <div class="status ok" id="jsReady" hidden role="status"><strong>✓ GENERATORE ATTIVO</strong>Modifica argomento o formato: il testo si aggiorna qui sotto. Premi COPIA COMANDO e incollalo in ChatGPT.</div>
+  <div class="grid">
+    <section class="card" aria-labelledby="hgen">
+      <div class="step">01 / Creazione contenuti</div>
+      <h2 id="hgen">PERSONALIZZA LA GENERAZIONE</h2>
+      <p class="description">Scegli un argomento oppure lascia AUTO. Il comando richiama il Prompt Master già presente nel progetto ChatGPT.</p>
+      <div class="field"><label for="topic">ARGOMENTO</label><input id="topic" type="text" value="AUTO" autocomplete="off" placeholder="AUTO · G43 · Chatter · Micrometro"></div>
+      <div class="field"><label for="format">FORMATO</label><select id="format"><option value="AUTO">AUTO — scegli automaticamente</option><option value="REEL">REEL</option><option value="CAROSELLO">CAROSELLO</option><option value="STORIA">STORIA</option></select></div>
+      <label class="preview-title" for="genOutput">COMANDO GENERATO <span>Aggiornato in tempo reale</span></label>
+      <textarea id="genOutput" readonly spellcheck="false" aria-label="Comando di generazione">Anteprima non interattiva. Apri il sito pubblicato in Safari tramite GitHub Pages per generare il comando.</textarea>
+      <div class="actions"><button class="copy" data-copy="genOutput" disabled>COPIA COMANDO</button><button class="download" data-download="genOutput" disabled data-filename="GTcncLAB_CREA_CONTENUTO.txt">SCARICA .TXT</button></div>
+    </section>
+    <section class="card" aria-labelledby="hprod">
+      <div class="step">02 / Produzione pubblicabile</div>
+      <h2 id="hprod">COMANDO RAPIDO</h2>
+      <p class="description">Da utilizzare nella <b>stessa chat</b>, dopo che il contenuto è stato creato e corretto. Non serve ripetere argomento o storyboard.</p>
+      <div class="field"><label for="production">FORMATO DA PRODURRE</label><select id="production"><option value="REEL">REEL — video 9:16</option><option value="CAROSELLO">CAROSELLO — immagini 3:4</option><option value="STORIA">STORIA — immagine/video 9:16</option></select></div>
+      <div class="field"><label for="extra">NOTE AGGIUNTIVE (FACOLTATIVE)</label><input id="extra" type="text" placeholder="Es. Copertina 3 secondi, 5 slide…" autocomplete="off"></div>
+      <label class="preview-title" for="prodOutput">COMANDO GENERATO <span>Aggiornato in tempo reale</span></label>
+      <textarea id="prodOutput" readonly spellcheck="false" aria-label="Comando di produzione">Anteprima non interattiva. Apri il sito pubblicato in Safari tramite GitHub Pages per generare il comando.</textarea>
+      <div class="actions"><button class="copy" data-copy="prodOutput" disabled>COPIA COMANDO</button><button class="download" data-download="prodOutput" disabled data-filename="GTcncLAB_PRODUCI_CONTENUTO.txt">SCARICA .TXT</button></div>
+    </section>
+  </div>
+  <aside class="note"><strong>Importante:</strong> il comando di generazione richiede il Prompt Master nelle <b>Istruzioni</b> o nelle <b>Fonti</b> del progetto. Il comando di produzione usa il contenuto già scritto <b>nella stessa chat</b> e i tre file MASTER PRODUZIONE caricati tra le Fonti. In una chat nuova, senza quel contenuto, non può recuperarlo automaticamente.</aside>
+  <p class="footer">GTcncLAB • CNC / FANUC / MACRO B / METROLOGIA • Nessun dato inviato a server esterni</p>
+</main>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  'use strict';
+  var $=function(id){return document.getElementById(id)};
+  var files={REEL:'01_MASTER_PRODUZIONE_REEL.md',CAROSELLO:'02_MASTER_PRODUZIONE_CAROSELLO.md',STORIA:'03_MASTER_PRODUZIONE_STORIA.md'};
+  function update(){
+    var topic=$('topic').value.trim() || 'AUTO';
+    var format=$('format').value;
+    $('genOutput').value='ARGOMENTO: '+topic+'\nFORMATO: '+format+'\n\nApplica integralmente le istruzioni del progetto e il file PROMPT_MASTER_GTcncLAB.md nelle Fonti, se disponibile. Genera un contenuto GTcncLAB completo seguendo tutte le sue regole. Se ARGOMENTO è AUTO, seleziona un tema nuovo e pertinente. In questa fase sviluppa storyboard, testi, codice e didascalia; non avviare la produzione delle immagini o del video salvo richiesta esplicita.';
+    var prod=$('production').value;
+    var extra=$('extra').value.trim();
+    $('prodOutput').value='PRODUCI '+prod+'.\n\nApplica integralmente il file "'+files[prod]+'" presente nelle Fonti del progetto.\n\nUtilizza l’ULTIMO contenuto GTcncLAB creato e corretto IN QUESTA STESSA CHAT. Non chiedermi di reinserire argomento, storyboard, testi, formule o codice.\n\nRealizza i file effettivi pronti per Instagram, mantenendo identità grafica GTcncLAB, avatar Gian e voce Gianlu quando prevista e disponibile. Mantieni correttezza tecnica e contenuti già approvati. Se uno strumento necessario non è disponibile, specifica cosa puoi produrre realmente senza fingere di aver creato file o video.'+(extra?'\n\nINDICAZIONI AGGIUNTIVE: '+extra:'');
+  }
+  ['topic','format','production','extra'].forEach(function(id){$(id).addEventListener('input',update);$(id).addEventListener('change',update)});
+  var toastTimeout;
+  function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(function(){$('toast').classList.remove('show')},2600)}
+  async function copyText(id){
+    var el=$(id), value=el.value;
+    if(navigator.clipboard && window.isSecureContext){
+      try{await navigator.clipboard.writeText(value);toast('Comando copiato! Incollalo in ChatGPT.');return}catch(e){}
+    }
+    el.focus();el.select();el.setSelectionRange(0,value.length);
+    try{if(document.execCommand('copy')){toast('Comando copiato! Incollalo in ChatGPT.');return}}catch(e){}
+    toast('Testo selezionato: usa Copia dal menu del dispositivo.');
+  }
+  function downloadText(id,name){
+    var value=$(id).value;
+    var blob=new Blob(['\ufeff'+value],{type:'text/plain;charset=utf-8'});
+    var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url)},5000);toast('Download .txt avviato');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'),function(btn){btn.addEventListener('click',function(){copyText(btn.getAttribute('data-copy'))})});
+  Array.prototype.forEach.call(document.querySelectorAll('[data-download]'),function(btn){btn.addEventListener('click',function(){downloadText(btn.getAttribute('data-download'),btn.getAttribute('data-filename'))})});
+  update();
+  $('jsWarning').hidden = true;
+  $('jsReady').hidden = false;
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy], [data-download]'), function(btn){btn.disabled = false});
+})();
+</script>
+<script>
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function(){navigator.serviceWorker.register('./sw.js').catch(function(){})});
+}
+</script>
+</body>
+</html>
